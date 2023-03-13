@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
@@ -8,8 +7,17 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
+<<<<<<< HEAD
     public BaseObjects OccupiedObject; 
     public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
+=======
+
+    //public BaseObjects OccupiedObject; 
+    //public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
+
+    public object Item { get; private set; }
+
+>>>>>>> RandomPosition_KostinCode
 
 
 
@@ -17,6 +25,11 @@ public abstract class Tile : MonoBehaviour
     {
 
     }
+    internal virtual void PutItem(int randomItem)
+    {
+        throw new NotImplementedException();
+    }
+
 
     void OnMouseEnter()
     {
