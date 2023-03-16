@@ -17,9 +17,7 @@ public abstract class Tile : MonoBehaviour
     
 
 
-    public object Item { get; private set; }
-
-    
+    public IItem Item { get; private set; }
 
 
     public virtual void Init(int x, int y)

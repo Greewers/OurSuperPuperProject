@@ -1,68 +1,62 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
 
 
 public class ObjectSpawner : MonoBehaviour
 {
     //добавить прив€зку к клеткам и отсеживание не на врем€, а на количество ходов игрока 
-
-    public GameObject[] objectsToSpawn;
+    private GameObject[] _objectsToSpawn;
 
     public Tile[] TileFilter;
 
-    public float spawnDelay = 1f; // частота спавна
-
-    private float timeSinceLastSpawn = 0f; //переменна€, чтобы отслеживать, сколько времени прошло с момента создани€ последнего объекта
-
-    void Update()
+    void SpawnObjectBombs(Transform transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпл€р в позиции GameObject
     {
-        timeSinceLastSpawn += Time.deltaTime;
+        int randomIndex = Random.Range(0, _objectsToSpawn.Length);
+        Instantiate(_objectsToSpawn[randomIndex], transform.position, Quaternion.identity); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
+    }
 
-        if (timeSinceLastSpawn >= spawnDelay)
+    void SpawnObject<T>(Transform transform)
+    {
+        GameObject gObj = null;
+        foreach (var obj in _objectsToSpawn)
         {
-
-          SpawnObject(SceneContext.GridManager.GetRandomPosition()); //сделать получение точки спавна
-
-            timeSinceLastSpawn = 0f;
+            //Ќе уверн что сработает правильно приведение типов
+            if (obj is T)
+            { 
+                gObj = obj;
+                break;
+            }
         }
+
+        Instantiate(gObj, transform.position, Quaternion.identity); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
     }
 
-
-    void SpawnObject(Transform transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпл€р в позиции GameObject
-    {
-        int randomIndex = Random.Range(0, objectsToSpawn.Length);
-        Instantiate(objectsToSpawn[randomIndex], transform.position, Quaternion.identity); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
-    }
-
-    void SpawnObject(Vector2 transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпл€р в позиции GameObject
+    void SpawnRandomObject(Vector2 transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпл€р в позиции GameObject
     {
         var tile = SceneContext.GridManager.GetTileAtPosition(transform);
-        
+
         bool canPlaceItem = false;
         foreach (var t in TileFilter)
         {
             canPlaceItem = t.GetType() == tile.GetType();
             if (canPlaceItem == true)
-            { 
-                break; 
+            {
+                break;
             }
-                
         }
-        
-        if (tile !=null && tile.Item==null && canPlaceItem)
 
+        if (tile != null && tile.Item == null && canPlaceItem)
         {
-            int randomItem = Random.Range(0, objectsToSpawn.Length);
-            Instantiate(objectsToSpawn[randomItem], transform, Quaternion.identity); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
+            int randomItem = Random.Range(0, _objectsToSpawn.Length + 1);
+            Instantiate(_objectsToSpawn[randomItem], transform, Quaternion.identity); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
         }
 
     }
 
-
-        
-
+    internal void Spawn(int maxItemCount)
+    {
+        for (int i = 0; i < maxItemCount; i++)
+        {
+            SpawnRandomObject(SceneContext.GridManager.GetRandomPosition());
+        }
+    }
 }

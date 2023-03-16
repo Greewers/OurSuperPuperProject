@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseState 
+public abstract class BaseState
 {
-    public string name;
-    protected StateMachine stateMachine;
+    protected string _name;
+    protected StateMachine _stateMachine;
 
-    //public  BaseState(string name, StateMachine stateMachine)  Костя, а это нам надо???
-    //{
-    //    this.name = name;
-    //    this.stateMachine = stateMachine;
-    //}
+    public BaseState(string name, StateMachine stateMachine)
+    {
+        _name = name;
+        _stateMachine = stateMachine;
+    }
 
-    public virtual void Enter() { }
-  
-    public virtual void Exit() { }
+    public abstract void Enter();
+
+    public abstract void Exit();
 }

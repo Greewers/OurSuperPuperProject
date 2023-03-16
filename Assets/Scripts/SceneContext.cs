@@ -1,98 +1,34 @@
-using System;
 using UnityEngine;
 
 public class SceneContext : MonoBehaviour
 {
     public static GridManager GridManager;
+    public static Player Player;
+    public static ObjectSpawner ObjectSpawner;
 
     private void Awake()
     {
         GridManager = FindObjectOfType<GridManager>();
+        Player = FindObjectOfType<Player>();
+        //Все что на сцене
     }
 
 }
 
 public class Bootstraper : MonoBehaviour
 {
+    private StateMachine _stateMachine;
+    private SpawnSettings _spawnSettings;
+
     private void Awake()
     {
         SceneContext.GridManager.GenerateGrid();
-        //SceneContext.Payer.Instantiate();
+        SceneContext.Player.Init(SceneContext.GridManager.FindCenter());
 
+        _spawnSettings = Resources.Load<SpawnSettings>("Assets/Settings/Resources/LowDificulty.asset");
+        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings);
+        _stateMachine.Initialize();
     }
-
-    private void Start()
-    {
-        var player = new Player();
-        player.OnPlayerEndTurn += OnPlayerEndTurn;
-
-    }
-
-    private void OnPlayerEndTurn()
-    {
-
-        Debug.Log("end turn");
-
-    }
-}
-
-
-/*
- * Field Updates
- * Player turn
- */
-
-  
-
-public class Player : MonoBehaviour
-{
-    private bool isMoving = false;
-    private Vector3 targetPosition;
-    public float speed = 1f;
-
-
-
-    public event Action OnPlayerEndTurn;
-
-    private void Update()
-    {
-        if(Input.GetMouseButton(0))
-        {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            isMoving = true;
-        }
-
-        if (isMoving)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * speed);
-            if (transform.position == targetPosition)
-            {
-                isMoving = false;
-            }
-        }
-
-
-        /* if (moouse.Boot.Down())
-         * 
-         * 
-         * if (Input.GetMouseButtonDown(0))
-         * {
-         * 
-         * }
-         * 
-         /* {
-         * Move(Mouse.Position); */
-        OnPlayerEndTurn?.Invoke();
-
-        /*} 
-        */
-
-    }
-
-
-
-
-
 }
 
 

@@ -1,35 +1,33 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+public class StateMachine
 {
-    BaseState currentState;
+    protected BaseState _currentState;
+    public Dictionary<Type, BaseState> _states;
 
-    //void Start()
-    //{
-    //    currentState = GetInitialState(); возможно это нам надо, Костя, посмотри, пожалуйста
-    //    if (currentState != null)
-    //        currentState.Enter();
-    //}
-
-    public void Initialize(BaseState startingState)
+    public StateMachine(ObjectSpawner objectSpawner, SpawnSettings spawnSettings)
     {
-        currentState = startingState;
-        startingState.Enter();
+        _states = new Dictionary<Type, BaseState>()
+        {
+            { typeof(SpawnState), new SpawnState("asdasd", this, objectSpawner, spawnSettings) },
+            //Докинуть стейты
+            //{ typeof(PlayerMoveState), new PlayerMoveState("asdasd", this, objectSpawner, spawnSettings) }
+        };
     }
 
-
-    public void ChangeState(BaseState newState)
+    public void Initialize()
     {
-        currentState.Exit();
-
-        currentState = newState;
-        currentState.Enter();
+        _currentState = _states[typeof(SpawnState)];    
+        _currentState.Enter();
     }
 
-    //protected virtual BaseState GetInitialState()  возможно это ТОЖЕ нам надо, Костя, посмотри, пожалуйста
-    //{
-    //    return null;
-    //}
+    public void ChangeState(Type type)
+    {
+        _currentState.Exit();
+
+        _currentState = _states[type];
+        _currentState.Enter();
+    }
+
 }

@@ -13,21 +13,18 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
-   
-
     private void Start()
     {
         GenerateGrid();
     }
 
-   
-
     public void GenerateGrid()
     {
         GenerateGrid_Internal();
 
-        Camera.main.transform.position = GetFindCenter();
+        Camera.main.transform.position = FindCenter();
     }
+
     private void GenerateGrid_Internal()
     {
         _wallSpawnFrequency = _wallSpawnFrequency * 100;
@@ -38,7 +35,7 @@ public class GridManager : MonoBehaviour
             {
                 Tile tile;
 
-                if (IsFindCenter(x, y))
+                if (IsCenter(x, y))
                 {
                     tile = _floorTile;
                 }
@@ -59,37 +56,23 @@ public class GridManager : MonoBehaviour
 
     }
 
-
-    private bool IsFindCenter(int x, int y)
+    private bool IsCenter(int x, int y)
     {
-        var center = GetFindCenter();
+        var center = FindCenter();
         return (int)center.x == x && (int)center.y == y;
 
     }
-    public Tile GetTileAtPosition(Vector2 pos)
-    {
-        if (_tiles.TryGetValue(pos, out var tile))
-            return tile;
-        return null;
 
-    }
+    public Tile GetTileAtPosition(Vector2 pos) 
+        => _tiles.TryGetValue(pos, out var tile) ? tile : null;
 
-    private Vector3 GetFindCenter()
-        => new(((float)_wight / 2) - 0.5f, (float)_height / 2 - 0.5f, -10);
+    public Vector3 FindCenter()
+        => new Vector3(((float)_wight / 2) - 0.5f, (float)_height / 2 - 0.5f, -10);
 
-    public Vector2 GetRandomPosition()
-    {
-        //throw new System.NotImplementedException(); //
-
-        int x = UnityEngine.Random.Range(0, _wight);
-        int y = UnityEngine.Random.Range(0, _height);
-        
+    public Vector2 GetRandomPosition() 
+        => new Vector2(Random.Range(0, _wight), Random.Range(0, _height));
 
 
-        return new Vector2(x, y);
-    }
-
-    
 
 
 }
