@@ -75,6 +75,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.46164113
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.46164113
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.735849
+      objectReference: {fileID: 0}
     - target: {fileID: 5863097467131098511, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
       propertyPath: m_Name
       value: Floor Tile
@@ -100,14 +116,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5286058257945285042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5f6b14aeede8240bc43049d1a417d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 076658d4f5752a04b9099df321992a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 5286058257945285041}
   _highlight: {fileID: 5286058257966578616}
-  _isWalkable: 1
-  _baseColor: {r: 0.4811321, g: 0.4016999, b: 0.4016999, a: 1}
-  _offsetColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+  _isWalkable: 0
+  OccupiedObject: {fileID: 0}
+  _baseColor: {r: 0.8018868, g: 0.3465924, b: 0.003782494, a: 1}
+  _offsetColor: {r: 1, g: 0.6020543, b: 0.2783019, a: 1}
 --- !u!1 &5286058257966578616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5863097467285806981, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}

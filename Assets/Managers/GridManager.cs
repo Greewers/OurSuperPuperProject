@@ -13,6 +13,8 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
+   
+
     private void Start()
     {
         GenerateGrid();
@@ -86,6 +88,8 @@ public class GridManager : MonoBehaviour
 
         return new Vector2(x, y);
     }
+
+    
 
 
 }
