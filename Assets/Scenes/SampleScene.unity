@@ -157,7 +157,7 @@ MonoBehaviour:
   _floorTile: {fileID: 3937111368563397958, guid: f78f5cf004cc65547a6b4120d0d36feb, type: 3}
   _wallTile: {fileID: 7504853969566848565, guid: dbfb83754e1858244bfa503ee084e172, type: 3}
   _cam: {fileID: 519420032}
-  _wallSpawnFrequency: 0.026
+  _wallSpawnFrequency: 0.613
 --- !u!4 &41828638
 Transform:
   m_ObjectHideFlags: 0

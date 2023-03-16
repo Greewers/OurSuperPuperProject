@@ -77,15 +77,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
       propertyPath: m_Color.b
-      value: 0.2270826
+      value: 0.13443397
       objectReference: {fileID: 0}
     - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
       propertyPath: m_Color.g
-      value: 0.2270826
+      value: 0.13443397
       objectReference: {fileID: 0}
     - target: {fileID: 5863097467131098508, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
       propertyPath: m_Color.r
-      value: 0.764151
+      value: 0.1792453
       objectReference: {fileID: 0}
     - target: {fileID: 5863097467131098511, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}
       propertyPath: m_Name
@@ -113,11 +113,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8930591381851602183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22513d9bd3996fb449231e856bbba678, type: 3}
+  m_Script: {fileID: 11500000, guid: e58ad966efb149c45ba6611827d88a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 8930591381851602180}
   _highlight: {fileID: 8930591381956237069}
+  _isWalkable: 0
+  OccupiedObject: {fileID: 0}
 --- !u!1 &8930591381956237069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5863097467285806981, guid: 4e2813cacec2483458126a2d58da00dd, type: 3}

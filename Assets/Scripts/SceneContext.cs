@@ -30,6 +30,7 @@ public class Bootstraper : MonoBehaviour
 
     private void OnPlayerEndTurn()
     {
+
         Debug.Log("end turn");
 
     }
@@ -45,10 +46,31 @@ public class Bootstraper : MonoBehaviour
 
 public class Player : MonoBehaviour
 {
+    private bool isMoving = false;
+    private Vector3 targetPosition;
+    public float speed = 1f;
+
+
+
     public event Action OnPlayerEndTurn;
 
     private void Update()
     {
+        if(Input.GetMouseButton(0))
+        {
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            isMoving = true;
+        }
+
+        if (isMoving)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * speed);
+            if (transform.position == targetPosition)
+            {
+                isMoving = false;
+            }
+        }
+
 
         /* if (moouse.Boot.Down())
          * 

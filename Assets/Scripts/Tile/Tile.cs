@@ -7,18 +7,19 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
-<<<<<<< HEAD
+
     public BaseObjects OccupiedObject; 
     public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
-=======
+
 
     //public BaseObjects OccupiedObject; 
     //public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
+    
+
 
     public object Item { get; private set; }
 
->>>>>>> RandomPosition_KostinCode
-
+    
 
 
     public virtual void Init(int x, int y)
