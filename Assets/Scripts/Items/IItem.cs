@@ -7,9 +7,10 @@ public interface IItem
 
 public class Bomb : MonoBehaviour, IItem
 {
+    [SerializeField][Range(0, 10)] private int _bombTimer = 3;
     public void UpdateTimer()
     {
-        int _bombTimer = 3;
+
         if (_bombTimer !=0 )
         {
             _bombTimer--;
