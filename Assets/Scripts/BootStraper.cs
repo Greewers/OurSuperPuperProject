@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class BootStraper : MonoBehaviour
 {
+    [SerializeField] private Player player;
 
     private StateMachine _stateMachine;
     private SpawnSettings _spawnSettings;
     private GlobalOptions _globalOptions;
 
+
     public void Awake()
     {
-        Debug.Log("Zalupa2222");
+        SceneContext.Init();
         SceneContext.GridManager.GenerateGrid();
-        //SceneContext.Player.Init(SceneContext.GridManager.FindCenter());
+        player.Init(SceneContext.GridManager.FindCenter());
 
         _spawnSettings = Resources.Load<SpawnSettings>("Assets/Settings/Resources/LowDificulty.asset");
-        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings, SceneContext.Player, SceneContext.GridManager, _globalOptions);
+        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings, player, SceneContext.GridManager, _globalOptions);
         _stateMachine.Initialize();
 
     }

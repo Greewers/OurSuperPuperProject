@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     internal void Init(Vector2 startPositon)
     {
-        //Instantiate(this, startPositon, Quaternion.identity);
+        Instantiate(this, startPositon, Quaternion.identity);
     }
 }
 
