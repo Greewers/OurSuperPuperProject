@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d2a9de8e4c91b48aa9596226903523, type: 3}
   m_Name: LowDificulty
   m_EditorClassIdentifier: 
-  MaxBombCount: 2
+  MaxBombCount: 4
   MaxShieldCount: 10
