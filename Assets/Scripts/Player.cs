@@ -30,9 +30,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayerSpawn()
+    {
+
+    }
+
     internal void Init(Vector2 startPositon)
     {
-        throw new NotImplementedException();
+        //Instantiate(this, startPositon, Quaternion.identity);
     }
 }
 

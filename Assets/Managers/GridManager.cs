@@ -13,11 +13,6 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
-    private void Start()
-    {
-        GenerateGrid();
-    }
-
     public void GenerateGrid()
     {
         GenerateGrid_Internal();
@@ -59,7 +54,7 @@ public class GridManager : MonoBehaviour
     private bool IsCenter(int x, int y)
     {
         var center = FindCenter();
-        return (int)center.x == x && (int)center.y == y;
+        return (int)center.x == x && (int)center.y == y; 
 
     }
 
@@ -70,7 +65,7 @@ public class GridManager : MonoBehaviour
         => new Vector3(((float)_wight / 2) - 0.5f, (float)_height / 2 - 0.5f, -10);
 
     public Vector2 GetRandomPosition() 
-        => new Vector2(Random.Range(0, _wight), Random.Range(0, _height));
+        => new Vector2(Random.Range(0, _wight + 1), Random.Range(0, _height + 1));
 
 
 

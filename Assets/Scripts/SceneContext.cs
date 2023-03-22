@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneContext : MonoBehaviour
@@ -8,27 +10,9 @@ public class SceneContext : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Zalupa");
         GridManager = FindObjectOfType<GridManager>();
         Player = FindObjectOfType<Player>();
         //Все что на сцене
     }
-
 }
-
-public class Bootstraper : MonoBehaviour
-{
-    private StateMachine _stateMachine;
-    private SpawnSettings _spawnSettings;
-
-    private void Awake()
-    {
-        SceneContext.GridManager.GenerateGrid();
-        SceneContext.Player.Init(SceneContext.GridManager.FindCenter());
-
-        _spawnSettings = Resources.Load<SpawnSettings>("Assets/Settings/Resources/LowDificulty.asset");
-        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings);
-        _stateMachine.Initialize();
-    }
-}
-
-

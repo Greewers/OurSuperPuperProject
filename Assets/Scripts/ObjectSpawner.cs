@@ -14,21 +14,28 @@ public class ObjectSpawner : MonoBehaviour
         Instantiate(_objectsToSpawn[randomIndex], transform.position, Quaternion.identity); //Quaternion.identity - используется для установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
     }
 
-    void SpawnObject<T>(Transform transform)
+    void SpawnObjectShield(Transform transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпляр в позиции GameObject
     {
-        GameObject gObj = null;
-        foreach (var obj in _objectsToSpawn)
-        {
-            //Не уверн что сработает правильно приведение типов
-            if (obj is T)
-            { 
-                gObj = obj;
-                break;
-            }
-        }
-
-        Instantiate(gObj, transform.position, Quaternion.identity); //Quaternion.identity - используется для установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
+        int randomIndex = Random.Range(0, _objectsToSpawn.Length);
+        Instantiate(_objectsToSpawn[randomIndex], transform.position, Quaternion.identity); //Quaternion.identity - используется для установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
     }
+
+    //Со звездочкой
+    //void SpawnObject<T>(Transform transform)
+    //{
+    //    GameObject gObj = null;
+    //    foreach (var obj in _objectsToSpawn)
+    //    {
+    //        //Не уверн что сработает правильно приведение типов
+    //        if (obj is T)
+    //        { 
+    //            gObj = obj;
+    //            break;
+    //        }
+    //    }
+
+    //    Instantiate(gObj, transform.position, Quaternion.identity); //Quaternion.identity - используется для установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
+    //}
 
     void SpawnRandomObject(Vector2 transform) //выбирает случайный объект из массива objectsToSpawn и создает его экземпляр в позиции GameObject
     {

@@ -12,11 +12,6 @@ public abstract class Tile : MonoBehaviour
     public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
 
 
-    //public BaseObjects OccupiedObject; 
-    //public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
-    
-
-
     public IItem Item { get; private set; }
 
 
