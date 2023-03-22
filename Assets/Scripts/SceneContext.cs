@@ -10,6 +10,7 @@ public class SceneContext : MonoBehaviour
     public static void Init()
     {
         GridManager = FindObjectOfType<GridManager>();
+        ObjectSpawner = FindObjectOfType<ObjectSpawner>();
         //Все что на сцене
     }
 }

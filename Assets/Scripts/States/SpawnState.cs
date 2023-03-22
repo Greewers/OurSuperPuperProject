@@ -15,7 +15,7 @@ public class SpawnState : BaseState
     public override void Enter()
     {
         _objectSpawner.Spawn(_spawnSettings.MaxBombCount);
-        //SpawnBombs
+        _stateMachine.ChangeState(typeof(PlayerMoveState));
     }
 
     public override void Exit()

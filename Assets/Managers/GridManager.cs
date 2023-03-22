@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -39,7 +40,6 @@ public class GridManager : MonoBehaviour
                     tile = Random.Range(0, 100) > _wallSpawnFrequency ? _floorTile : _wallTile;
                 }
 
-
                 var spawnedTile = Instantiate(tile, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
@@ -48,7 +48,6 @@ public class GridManager : MonoBehaviour
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
-
     }
 
     private bool IsCenter(int x, int y)
@@ -65,9 +64,10 @@ public class GridManager : MonoBehaviour
         => new Vector3(((float)_wight / 2) - 0.5f, (float)_height / 2 - 0.5f, -10);
 
     public Vector2 GetRandomPosition() 
-        => new Vector2(Random.Range(0, _wight + 1), Random.Range(0, _height + 1));
+        => new Vector2(Random.Range(0, _wight), Random.Range(0, _height));
 
-
-
-
+    internal IItem[] GetAllItem()
+    {
+        return _tiles.Select(t => t.Value.Item).Where(i => i != null).ToArray();
+    }
 }

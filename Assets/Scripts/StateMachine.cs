@@ -10,9 +10,9 @@ public class StateMachine
     {
         _states = new Dictionary<Type, BaseState>()
         {
-            { typeof(SpawnState), new SpawnState("Появление игрока и бомб", this, objectSpawner, spawnSettings) },
-            { typeof(PlayerMoveState), new PlayerMoveState("Перемещение игрока", this, player) },
-            { typeof(UpdateFieldState), new UpdateFieldState("Обновление элементов на поле", this, gridManager, globalOptions) }
+            { typeof(SpawnState), new SpawnState(nameof(SpawnState), this, objectSpawner, spawnSettings) },
+            { typeof(PlayerMoveState), new PlayerMoveState(nameof(PlayerMoveState), this, player) },
+            { typeof(UpdateFieldState), new UpdateFieldState(nameof(UpdateFieldState), this, gridManager, globalOptions) }
             //Докинуть стейты - done
         };
     }

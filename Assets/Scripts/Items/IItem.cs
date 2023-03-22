@@ -1,30 +1,7 @@
-﻿using UnityEngine;
-
-public interface IItem
+﻿public interface IItem
 {
+    void Init(Tile tile);
     void UpdateTimer();
-}
-
-public class Bomb : MonoBehaviour, IItem
-{
-    [SerializeField][Range(0, 10)] private int _bombTimer = 3;
-    public void UpdateTimer()
-    {
-
-        if (_bombTimer !=0 )
-        {
-            _bombTimer--;
-        }
-        else
-        {
-            Explosion();
-        }
-    }
-
-    private void Explosion()
-    {
-        //через OccupiedObject
-    }
 }
 
 //public class Shield : MonoBehaviour, IItem

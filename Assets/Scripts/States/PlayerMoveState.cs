@@ -18,7 +18,7 @@ public class PlayerMoveState : BaseState
 
     public override void Enter()
     {
-        //Разрешить персонажу двигаться
+        _player.AllowMoving();
     }
 
     public override void Exit()

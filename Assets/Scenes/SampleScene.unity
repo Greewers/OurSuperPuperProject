@@ -157,7 +157,7 @@ MonoBehaviour:
   _floorTile: {fileID: 3937111368563397958, guid: f78f5cf004cc65547a6b4120d0d36feb, type: 3}
   _wallTile: {fileID: 7504853969566848565, guid: dbfb83754e1858244bfa503ee084e172, type: 3}
   _cam: {fileID: 519420032}
-  _wallSpawnFrequency: 0.126
+  _wallSpawnFrequency: 0.368
 --- !u!4 &41828638
 Transform:
   m_ObjectHideFlags: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4300f7ae0b96e6649bdaa74a7477f3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5503200610192566630, guid: 60041651f525b1a4fb8e88ae86c7bc6c, type: 3}
+  playerPrefab: {fileID: 5503200610192566630, guid: 60041651f525b1a4fb8e88ae86c7bc6c, type: 3}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,3 +284,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef7cc978046505498e07e2ff6c56494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &998565529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 998565531}
+  - component: {fileID: 998565530}
+  m_Layer: 0
+  m_Name: ObjectSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &998565530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998565529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8545831111613af468fe07590570ce51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsToSpawn:
+  - {fileID: 4641518217836395151, guid: ce82a456cd57b64469da6b5dda393cc6, type: 3}
+  TileFilter:
+  - {fileID: 3937111368563397958, guid: f78f5cf004cc65547a6b4120d0d36feb, type: 3}
+--- !u!4 &998565531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998565529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.73142576, y: 1.0141774, z: 0.06808839}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

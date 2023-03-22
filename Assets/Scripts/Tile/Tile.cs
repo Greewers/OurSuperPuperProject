@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
@@ -7,23 +8,32 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
+    private IItem _item; 
 
-    public BaseObjects OccupiedObject; 
-    public bool Walkable => _isWalkable && OccupiedObject == null; //определеяет финальную проходимость (проходимость клетке и занята ли объектом)
+    public IItem Item
+    {
+        get
+        {
+            return _item;
+        }
+        private set
+        {
+            IsEmpty = value == null;
+            _item = value;
+        }
+    }
 
-
-    public IItem Item { get; private set; }
-
+    public bool IsEmpty { get; set; } = true;
 
     public virtual void Init(int x, int y)
     {
 
     }
-    internal virtual void PutItem(int randomItem)
-    {
-        throw new NotImplementedException();
-    }
 
+    internal virtual void PutItem(IItem item)
+    {
+        Item = item;
+    }
 
     void OnMouseEnter()
     {

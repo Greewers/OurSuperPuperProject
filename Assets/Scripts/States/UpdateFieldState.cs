@@ -15,15 +15,15 @@ public class UpdateFieldState : BaseState
 
     public override void Enter()
     {
-        /*var tiles = GridManager.GetAllTile();
-        foreach (var tile in tiles)
+        var items = GridManager.GetAllItem();
+        foreach (var item in items)
         {
-            tile.Item.UpdateTimer();
+            item.UpdateTimer();
         }
 
-        GlobalOptions.ScoreIncriment();
+        //GlobalOptions.ScoreIncriment();
 
-        _stateMachine.ChangeState(typeof(SpawnState));*/
+        _stateMachine.ChangeState(typeof(SpawnState));
     }
 
     public override void Exit()
