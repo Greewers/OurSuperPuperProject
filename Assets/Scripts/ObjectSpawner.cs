@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _objectsToSpawn;
 
     public Tile[] TileFilter;
+    
 
     private void SpawnObject<T>(Vector2 transform) where T : MonoBehaviour, IItem
     {

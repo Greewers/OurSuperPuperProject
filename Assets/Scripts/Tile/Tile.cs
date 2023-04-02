@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer _renderer;
-    [SerializeField] private GameObject _highlight;
+    [SerializeField] public GameObject _highlight;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
     private IItem _item; 

@@ -20,6 +20,12 @@ public class Bomb : MonoBehaviour, IItem
         {
             _bombTimer--;
             _textMeshPro.text = _bombTimer.ToString();
+            //var variants = SceneContext.GridManager.FindNeighbors(_cureentTile);
+            //foreach (var variant in variants)
+            //{
+            //    var tile = variant;
+            //    tile.gameObject.SetActive(true);
+            //}
         }
         else
         {
@@ -29,8 +35,10 @@ public class Bomb : MonoBehaviour, IItem
 
     private void Explosion()
     {
+
         _cureentTile.PutItem(null);
         Destroy(gameObject);
+
         //через OccupiedObject
     }
 }
