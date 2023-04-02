@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class GlobalOptions
 {
@@ -8,6 +9,7 @@ public class GlobalOptions
     public void ScoreIncriment()
     {
         Score++;
+        Debug.Log(Score);
         OnScoreChaned?.Invoke(Score);
     }
 

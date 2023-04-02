@@ -10,9 +10,22 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile _wallTile;
 
     [SerializeField] private Transform _cam;
-    [SerializeField] [Range(0, 1)] private float _wallSpawnFrequency;
+    [SerializeField][Range(0, 1)] private float _wallSpawnFrequency;
+
+    public event System.Action<List<Tile>> OnExplosion;
 
     private Dictionary<Vector2, Tile> _tiles;
+    private List<Vector2> _offsetList = new List<Vector2>()
+    {
+        new Vector2(0, -1),
+        new Vector2(-1, -1),
+        new Vector2(-1, 0),
+        new Vector2(0, +1),
+        new Vector2(+1, +1),
+        new Vector2(+1, 0),
+        new Vector2(+1, -1),
+        new Vector2(-1, +1)
+    };
 
     public void GenerateGrid()
     {
@@ -53,21 +66,46 @@ public class GridManager : MonoBehaviour
     private bool IsCenter(int x, int y)
     {
         var center = FindCenter();
-        return (int)center.x == x && (int)center.y == y; 
+        return (int)center.x == x && (int)center.y == y;
 
     }
 
-    public Tile GetTileAtPosition(Vector2 pos) 
+    public Tile GetTileAtPosition(Vector2 pos)
         => _tiles.TryGetValue(pos, out var tile) ? tile : null;
 
     public Vector3 FindCenter()
         => new Vector3(((float)_wight / 2) - 0.5f, (float)_height / 2 - 0.5f, -10);
 
-    public Vector2 GetRandomPosition() 
+    public Vector2 GetRandomPosition()
         => new Vector2(Random.Range(0, _wight), Random.Range(0, _height));
+
+    public List<Tile> FindNeighbors(Tile currentTile)
+    {
+        var variantList = new List<Tile>();
+        Vector2 currentPosition = currentTile.gameObject.transform.position;
+
+        foreach (Vector2 offset in _offsetList)
+        {
+            var targetPosition = currentPosition + offset;
+            var targetTile = GetTileAtPosition(targetPosition);
+            variantList.Add(targetTile);
+        }
+
+        return variantList;
+    }
 
     internal IItem[] GetAllItem()
     {
         return _tiles.Select(t => t.Value.Item).Where(i => i != null).ToArray();
+    }
+
+    internal void HighLight(Tile tile, bool value)
+    {
+        tile?.SetLeadRound(value);
+    }
+
+    public void Explosion(Tile tile)
+    {
+        OnExplosion.Invoke(FindNeighbors(tile));
     }
 }

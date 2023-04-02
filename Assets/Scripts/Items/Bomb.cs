@@ -13,6 +13,8 @@ public class Bomb : MonoBehaviour, IItem
         _textMeshPro.text = _bombTimer.ToString();
     }
 
+    public bool Pickupble() => false;
+
     public void UpdateTimer()
     {
 
@@ -29,8 +31,12 @@ public class Bomb : MonoBehaviour, IItem
 
     private void Explosion()
     {
+
         _cureentTile.PutItem(null);
         Destroy(gameObject);
+
+        SceneContext.GridManager.Explosion(_cureentTile);
+
         //через OccupiedObject
     }
 }
