@@ -12,10 +12,22 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _cam;
     [SerializeField][Range(0, 1)] private float _wallSpawnFrequency;
 
-    private Dictionary<Vector2, Tile> _tiles;
-    private List<Vector2> offsetList = new List<Vector2>() { new Vector2(0, -1), new Vector2(-1, -1), new Vector2(-1, 0), new Vector2(0, +1), new Vector2(+1, +1), new Vector2(-1, 0) } ;
+    public event System.Action<List<Tile>> OnExplosion;
 
-public void GenerateGrid()
+    private Dictionary<Vector2, Tile> _tiles;
+    private List<Vector2> _offsetList = new List<Vector2>()
+    {
+        new Vector2(0, -1),
+        new Vector2(-1, -1),
+        new Vector2(-1, 0),
+        new Vector2(0, +1),
+        new Vector2(+1, +1),
+        new Vector2(+1, 0),
+        new Vector2(+1, -1),
+        new Vector2(-1, +1)
+    };
+
+    public void GenerateGrid()
     {
         GenerateGrid_Internal();
 
@@ -72,7 +84,7 @@ public void GenerateGrid()
         var variantList = new List<Tile>();
         Vector2 currentPosition = currentTile.gameObject.transform.position;
 
-        foreach (Vector2 offset in offsetList)
+        foreach (Vector2 offset in _offsetList)
         {
             var targetPosition = currentPosition + offset;
             var targetTile = GetTileAtPosition(targetPosition);
@@ -85,5 +97,15 @@ public void GenerateGrid()
     internal IItem[] GetAllItem()
     {
         return _tiles.Select(t => t.Value.Item).Where(i => i != null).ToArray();
+    }
+
+    internal void HighLight(Tile tile, bool value)
+    {
+        tile?.SetLeadRound(value);
+    }
+
+    public void Explosion(Tile tile)
+    {
+        OnExplosion.Invoke(FindNeighbors(tile));
     }
 }

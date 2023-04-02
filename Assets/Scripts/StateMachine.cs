@@ -12,7 +12,8 @@ public class StateMachine
         {
             { typeof(SpawnState), new SpawnState(nameof(SpawnState), this, objectSpawner, spawnSettings) },
             { typeof(PlayerMoveState), new PlayerMoveState(nameof(PlayerMoveState), this, player) },
-            { typeof(UpdateFieldState), new UpdateFieldState(nameof(UpdateFieldState), this, gridManager, globalOptions) }
+            { typeof(UpdateFieldState), new UpdateFieldState(nameof(UpdateFieldState), this, gridManager, globalOptions, player) },
+            { typeof(EndState), new EndState(nameof(EndState), this) }
             //Докинуть стейты - done
         };
     }

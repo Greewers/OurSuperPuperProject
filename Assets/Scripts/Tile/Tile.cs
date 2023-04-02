@@ -1,11 +1,10 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer _renderer;
-    [SerializeField] public GameObject _highlight;
+    [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _leadRound ;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
     private IItem _item; 
@@ -18,7 +17,7 @@ public abstract class Tile : MonoBehaviour
         }
         private set
         {
-            IsEmpty = value == null;
+            IsEmpty = value == null || value.Pickupble();
             _item = value;
         }
     }
@@ -30,9 +29,20 @@ public abstract class Tile : MonoBehaviour
 
     }
 
+    internal IItem PickItem()
+    {
+        Item = null;
+        return Item;
+    }
+
     internal virtual void PutItem(IItem item)
     {
         Item = item;
+    }
+
+    public void SetLeadRound(bool value)
+    {
+        _leadRound.SetActive(value);
     }
 
     void OnMouseEnter()
@@ -40,7 +50,7 @@ public abstract class Tile : MonoBehaviour
         _highlight.SetActive(true);
     }
 
-    private void OnMouseExit()
+    void OnMouseExit()
     {
         _highlight.SetActive(false);
     }
