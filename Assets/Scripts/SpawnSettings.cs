@@ -4,5 +4,5 @@
 public class SpawnSettings :ScriptableObject 
 {
     public int MaxBombCount = 5;
-    public int MaxShieldCount = 3;
+    public int MaxShieldCount = 1;
 }

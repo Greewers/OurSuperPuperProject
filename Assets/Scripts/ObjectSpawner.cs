@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -7,8 +8,9 @@ public class ObjectSpawner : MonoBehaviour
     //добавить привязку к клеткам и отсеживание не на время, а на количество ходов игрока 
     [SerializeField] private GameObject[] _objectsToSpawn;
 
-    public Tile[] TileFilter;
-    
+    public Tile[] TileFilter;        
+    private int _shieldCount = 0;
+
 
     private void SpawnObject<T>(Vector2 transform) where T : MonoBehaviour, IItem
     {
@@ -23,10 +25,7 @@ public class ObjectSpawner : MonoBehaviour
             {
                 break;
             }
-            else
-            {
-                Debug.Log("Trying spawn in bad tile");
-            }
+
         }
 
         if (tile != null && tile.IsEmpty && canPlaceItem)
@@ -38,11 +37,20 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    internal void Spawn(int maxBombCount)
+    internal void Spawn(int maxBombCount, int maxShieldCount)
     {
+        _shieldCount++;       
+
+        if (_shieldCount >= 5)
+        {
+            SpawnObject<Shield>(SceneContext.GridManager.GetRandomPosition());
+            _shieldCount = 0;            
+        }
         for (int i = 0; i < maxBombCount; i++)
         {
             SpawnObject<Bomb>(SceneContext.GridManager.GetRandomPosition());
         }
+
+
     }
 }
