@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LowDificulty
   m_EditorClassIdentifier: 
   MaxBombCount: 4
-  MaxShieldCount: 10
+  MaxShieldCount: 1
