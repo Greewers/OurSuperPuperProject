@@ -7,9 +7,9 @@ public abstract class Tile : MonoBehaviour
     [SerializeField] private GameObject _leadRound ;
     [SerializeField] private bool _isWalkable; // задает плитке значение проходимости
 
-    private IItem _item; 
+    private ITileItem _item; 
 
-    public IItem Item
+    public ITileItem Item
     {
         get
         {
@@ -29,14 +29,15 @@ public abstract class Tile : MonoBehaviour
 
     }
 
-    public virtual IItem PickItem()
+    public virtual IPlayerItem PickItem()
     { 
+        var playerItem = Item.PlayerItem;
         Item.ItemDestroy();
         Item = null;
-        return Item;
+        return playerItem;
     }
 
-    internal virtual void PutItem(IItem item)
+    internal virtual void PutItem(ITileItem item)
     {
         Item = item;
     }

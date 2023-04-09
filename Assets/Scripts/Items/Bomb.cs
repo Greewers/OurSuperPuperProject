@@ -1,16 +1,22 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour, IItem
+public class Bomb : MonoBehaviour, ITileItem
 {
     [SerializeField][Range(1, 10)] private int _bombTimer = 3;
     [SerializeField] private TMPro.TextMeshProUGUI _textMeshPro;
      private Tile _cureentTile;
 
+    [SerializeField] private Explosion _explosion;
+
+
+    public IPlayerItem PlayerItem { get; private set; }
+
     public void Init(Tile tile)
     {
         _cureentTile = tile;
         _textMeshPro.text = _bombTimer.ToString();
+        PlayerItem = null;
     }
 
     public bool Pickupble() => false;
@@ -31,6 +37,7 @@ public class Bomb : MonoBehaviour, IItem
 
     public void ItemDestroy()
     {
+        Instantiate(_explosion, transform.position, transform.rotation);
         _cureentTile.PutItem(null);
         Destroy(gameObject);
 

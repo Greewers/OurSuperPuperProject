@@ -94,7 +94,7 @@ public class GridManager : MonoBehaviour
         return variantList;
     }
 
-    internal IItem[] GetAllItem()
+    internal ITileItem[] GetAllItem()
     {
         return _tiles.Select(t => t.Value.Item).Where(i => i != null).ToArray();
     }

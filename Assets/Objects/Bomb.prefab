@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bombTimer: 3
   _textMeshPro: {fileID: 9037418593549303204}
+  _explosion: {fileID: -8203905926536549611, guid: bfa275e651ef95647804dc7be6be6d62, type: 3}
 --- !u!1 &8762352255667048712
 GameObject:
   m_ObjectHideFlags: 0

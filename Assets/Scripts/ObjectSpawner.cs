@@ -9,10 +9,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _objectsToSpawn;
 
     public Tile[] TileFilter;
-    private int _shieldCount = 0;
 
-
-    private void SpawnObject<T>(Vector2 transform) where T : MonoBehaviour, IItem
+    private void SpawnObject<T>(Vector2 transform) where T : MonoBehaviour, ITileItem
     {
         var obj = _objectsToSpawn.First(o => o.GetComponent<T>() != null);
         var tile = SceneContext.GridManager.GetTileAtPosition(transform);
@@ -30,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
 
         if (tile != null && tile.Item == null && canPlaceItem)
         {
-            var item = Instantiate(obj, transform, Quaternion.identity).GetComponent<IItem>(); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
+            var item = Instantiate(obj, transform, Quaternion.identity).GetComponent<ITileItem>(); //Quaternion.identity - используетс€ дл€ установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
             tile.PutItem(item);
 
             item.Init(tile);

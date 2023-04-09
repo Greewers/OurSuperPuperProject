@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMoveState : BaseState
 {
@@ -19,6 +20,7 @@ public class PlayerMoveState : BaseState
     public override void Enter()
     {
         _player.AllowMoving();
+        _player.MarkMovebleTiles();
     }
 
     public override void Exit()
