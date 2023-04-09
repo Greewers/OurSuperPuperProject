@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxBombCount: 4
   MaxShieldCount: 1
+  BombSpawnRate: 1
+  ShieldSpawnRate: 5

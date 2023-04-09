@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class SpawnState : BaseState
 {
+    private int _spawnCount = 0;
     private ObjectSpawner _objectSpawner { get; }
     private SpawnSettings _spawnSettings { get; }
 
@@ -14,7 +15,17 @@ public class SpawnState : BaseState
 
     public override void Enter()
     {
-        _objectSpawner.Spawn(_spawnSettings.MaxBombCount, _spawnSettings.MaxShieldCount);
+        _spawnCount++;
+
+        var bombCount = (_spawnCount % _spawnSettings.BombSpawnRate == 0)
+            ? _spawnSettings.MaxBombCount
+            : 0;
+
+        var shieldCount = (_spawnCount % _spawnSettings.ShieldSpawnRate == 0)
+            ? _spawnSettings.MaxShieldCount
+            : 0;
+
+        _objectSpawner.Spawn(bombCount, shieldCount);
         _stateMachine.ChangeState(typeof(PlayerMoveState));
     }
 

@@ -82,7 +82,10 @@ public class Player : MonoBehaviour
         {
             var item = _currentPosition.PickItem();
             if (item != null)
+            {
+                Debug.Log("Pick shield");
                 _items.Add(item);
+            }
         }
     }
 
@@ -92,16 +95,16 @@ public class Player : MonoBehaviour
             && _filter.Any(t => t.GetType() == tile.GetType())
             && tile.IsEmpty;
 
-    private Tile GetCurrentPosition() 
+    private Tile GetCurrentPosition()
         => _gridManager.GetTileAtPosition(Vector2Int.RoundToInt(gameObject.transform.position));
 
-    public void AllowMoving() 
+    public void AllowMoving()
         => _canMoving = true;
 
     public Player PlayerSpawn(Vector2 startPositon)
         => Instantiate(this, startPositon, Quaternion.identity);
 
-    private void Kill() 
+    private void Kill()
         => OnPlayerKilled?.Invoke();
 
     private void OnExplosion(List<Tile> tiles)
@@ -109,7 +112,7 @@ public class Player : MonoBehaviour
         foreach (var tile in tiles)
         {
             if (_currentPosition == tile)
-            { 
+            {
                 Kill();
                 return;
             }

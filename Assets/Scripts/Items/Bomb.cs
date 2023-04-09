@@ -25,13 +25,12 @@ public class Bomb : MonoBehaviour, IItem
         }
         else
         {
-            Explosion();
+            ItemDestroy();
         }
     }
 
-    private void Explosion()
+    public void ItemDestroy()
     {
-
         _cureentTile.PutItem(null);
         Destroy(gameObject);
 

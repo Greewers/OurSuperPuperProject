@@ -29,8 +29,9 @@ public abstract class Tile : MonoBehaviour
 
     }
 
-    internal IItem PickItem()
-    {
+    public virtual IItem PickItem()
+    { 
+        Item.ItemDestroy();
         Item = null;
         return Item;
     }

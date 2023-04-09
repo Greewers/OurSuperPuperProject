@@ -3,6 +3,7 @@
     void Init(Tile tile);
     void UpdateTimer();
     bool Pickupble();
+    void ItemDestroy();
 }
 
 //public class Shield : MonoBehaviour, IItem

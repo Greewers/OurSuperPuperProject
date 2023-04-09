@@ -25,16 +25,13 @@ public class Shield : MonoBehaviour, IItem
         }
         else
         {
-            DestroyShield();
+            ItemDestroy();
         }
     }
 
-    private void DestroyShield()
+    public void ItemDestroy()
     {
-
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         _cureentTile.PutItem(null);
-
-        //через OccupiedObject
     }
 }

@@ -8,7 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     //добавить привязку к клеткам и отсеживание не на время, а на количество ходов игрока 
     [SerializeField] private GameObject[] _objectsToSpawn;
 
-    public Tile[] TileFilter;        
+    public Tile[] TileFilter;
     private int _shieldCount = 0;
 
 
@@ -28,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
 
         }
 
-        if (tile != null && tile.IsEmpty && canPlaceItem)
+        if (tile != null && tile.Item == null && canPlaceItem)
         {
             var item = Instantiate(obj, transform, Quaternion.identity).GetComponent<IItem>(); //Quaternion.identity - используется для установки поворота созданного объекта на вращение по умолчанию. transform.position добить 
             tile.PutItem(item);
@@ -37,16 +37,15 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    internal void Spawn(int maxBombCount, int maxShieldCount)
+    internal void Spawn(int bombCount, int shieldCount)
     {
-        _shieldCount++;       
 
-        if (_shieldCount >= 5)
+        for (int i = 0; i < shieldCount; i++)
         {
             SpawnObject<Shield>(SceneContext.GridManager.GetRandomPosition());
-            _shieldCount = 0;            
         }
-        for (int i = 0; i < maxBombCount; i++)
+
+        for (int i = 0; i < bombCount; i++)
         {
             SpawnObject<Bomb>(SceneContext.GridManager.GetRandomPosition());
         }
