@@ -7,6 +7,7 @@ public class SceneContext : MonoBehaviour
     public static GridManager GridManager;
     public static ObjectSpawner ObjectSpawner;
     public static Tile Tile;
+    public static ScoreCount scoreCount;
 
     public static void Init()
     {

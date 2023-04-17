@@ -5,6 +5,7 @@ public class Shield : MonoBehaviour, ITileItem
 {
     [SerializeField][Range(1, 10)] private int _sheildTimer = 5;
     [SerializeField] private TMPro.TextMeshProUGUI _textMeshPro;
+
     private Tile _cureentTile;
 
     public IPlayerItem PlayerItem { get ; private set; }

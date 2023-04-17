@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private float _speed = 1f;
     [SerializeField]
     private List<Tile> _filter = new List<Tile>();
+    [SerializeField]
+    private GameObject _sheildedHighlite; 
 
     private List<IPlayerItem> _items = new List<IPlayerItem>();
     private GridManager _gridManager = SceneContext.GridManager;
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("Item has been picked");
                 _items.Add(item);
+                _sheildedHighlite.SetActive(true);
             }
         }
     }
@@ -105,7 +108,10 @@ public class Player : MonoBehaviour
     {
         var shield = _items.FirstOrDefault(i => i.GetType() == typeof(ShieldPlayerItem));
         if (shield != null)
+        {
             _items.Remove(shield);
+            _sheildedHighlite.SetActive(false);
+        }
         else
         {
             IsDead = true;
