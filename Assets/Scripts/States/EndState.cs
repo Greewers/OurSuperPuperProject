@@ -2,13 +2,16 @@
 
 public class EndState : BaseState
 {
-    public EndState(string name, StateMachine stateMachine) : base(name, stateMachine)
+    private InGameUIController _inGameUIController { get; }
+    public EndState(string name, StateMachine stateMachine, InGameUIController inGameUIController) : base(name, stateMachine)
     {
+        _inGameUIController = inGameUIController;
     }
 
     public override void Enter()
     {
         Debug.Log("GAME OVER");
+        _inGameUIController.GameEnd();
     }
 
     public override void Exit()

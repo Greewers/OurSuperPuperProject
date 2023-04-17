@@ -6,22 +6,17 @@ public class ScoreCount : MonoBehaviour
 {
     [SerializeField]
     private TMPro.TextMeshProUGUI gameScore;
-
-    private GlobalOptions _globalOptions;
-
     private int _currentScore;
-
-    public void Start()
-    {
-        _globalOptions.OnScoreChanged += OnScoreChange;
-    }
 
     private void OnScoreChange(int value)
     {
-        _currentScore++;
-
-        gameScore.text = gameScore.text + _currentScore++;
         Debug.Log(gameScore.text);
-
+        _currentScore = value;
+        gameScore.text = "Текущий счет: " + _currentScore;
+    }
+    
+    public void Init(GlobalOptions globalOptions)
+    {
+        globalOptions.OnScoreChanged += OnScoreChange;
     }
 }

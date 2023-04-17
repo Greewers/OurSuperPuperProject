@@ -16,12 +16,15 @@ public class BootStraper : MonoBehaviour
         SceneContext.GridManager.GenerateGrid();
 
         _globalOptions = new GlobalOptions();
+
         var player = playerPrefab.PlayerSpawn(SceneContext.GridManager.FindCenter());
 
         _spawnSettings = Resources.Load<SpawnSettings>("LowDificulty");
-        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings, player, SceneContext.GridManager, _globalOptions);
-        _stateMachine.Initialize();
-
+        _stateMachine = new StateMachine(SceneContext.ObjectSpawner, _spawnSettings, player, SceneContext.GridManager, _globalOptions, SceneContext.InGameUIController);
+        _stateMachine.Initialize();   
+        
+        SceneContext.ScoreCount.Init(_globalOptions);
+        SceneContext.InGameUIController.Init(_globalOptions);
     }
 
 

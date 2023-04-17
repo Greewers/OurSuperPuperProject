@@ -19,5 +19,6 @@ public class GlobalOptions
         Score += score;
         OnScoreChanged?.Invoke(Score);
     }
+
 }
 
