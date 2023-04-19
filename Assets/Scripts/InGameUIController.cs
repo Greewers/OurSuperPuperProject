@@ -11,6 +11,7 @@ public class InGameUIController : MonoBehaviour
 
     public GameObject InGameCanvas;
     public GameObject EndGameCanvas;
+    public GameObject InGameMenuCanvas;
 
     private GlobalOptions _globalOptions;
     private int _finalScore;
@@ -22,6 +23,11 @@ public class InGameUIController : MonoBehaviour
     public void MainMenuButtonPresed()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void InGameMenuButtonPresed()
+    {
+        InGameMenuCanvas.SetActive(true);
+
     }
     public void GameEnd()
     {
