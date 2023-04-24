@@ -24,7 +24,7 @@ public class BootStraper : MonoBehaviour
         _stateMachine.Initialize();   
         
         SceneContext.ScoreCount.Init(_globalOptions);
-        SceneContext.InGameUIController.Init(_globalOptions);
+        SceneContext.InGameUIController.Init(_globalOptions, player);
     }
 
 

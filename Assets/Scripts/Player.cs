@@ -29,10 +29,12 @@ public class Player : MonoBehaviour
     {
         _currentPosition = GetCurrentPosition();
         _gridManager.OnExplosion += OnExplosion;
+        gameObject.SetActive(true);
     }
 
     private void Update()
     {
+        gameObject.SetActive(true);
         if (Input.GetMouseButton(0) && _canMoving)
         {
             _targetPosition = Vector2Int.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -87,6 +89,10 @@ public class Player : MonoBehaviour
                 _sheildedHighlite.SetActive(true);
             }
         }
+    }
+    public void ChangeActive(bool isActive)
+    {
+        gameObject.SetActive(isActive);
     }
 
     private bool CanMove(Tile tile)

@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+public class HowToPlayUIController : MonoBehaviour
 {
     public void NewGameButtonPressed()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    public void HowToPlayButtonPressed() 
+    public void CancelButtonPressed()
     {
-        SceneManager.LoadScene("HowToPlayScene");
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void ExitButtonPressed()
-    {
-        Application.Quit();
-    }
 
 }

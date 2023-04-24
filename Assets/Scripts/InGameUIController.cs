@@ -14,7 +14,9 @@ public class InGameUIController : MonoBehaviour
     public GameObject InGameMenuCanvas;
 
     private GlobalOptions _globalOptions;
+    private Player _player;
     private int _finalScore;
+
 
     public void RestartButtonPressed()
     {
@@ -26,8 +28,14 @@ public class InGameUIController : MonoBehaviour
     }
     public void InGameMenuButtonPresed()
     {
+        _player.ChangeActive(false);
         InGameMenuCanvas.SetActive(true);
+    }
 
+    public void ÑontinueButtonPresed()
+    {
+        _player.ChangeActive(true);
+        InGameMenuCanvas.SetActive(false);
     }
     public void GameEnd()
     {
@@ -36,8 +44,9 @@ public class InGameUIController : MonoBehaviour
         EndGameCanvas.SetActive(true);
         gameScore.text = "Âàø ñ÷åò: " + _finalScore--;
     }
-    public void Init(GlobalOptions globalOptions)
+    public void Init(GlobalOptions globalOptions, Player player)
     {
         _globalOptions = globalOptions;
+        _player = player;
     }
 }
